@@ -9,9 +9,15 @@ if (NOT SOFTFP)
   set(FLOAT_ABI_SUFFIX "hf")
 endif()
 
-find_program(CMAKE_C_COMPILER NAMES arm-linux-gnueabi${FLOAT_ABI_SUFFIX}-gcc-${GCC_COMPILER_VERSION})
-find_program(CMAKE_CXX_COMPILER NAMES arm-linux-gnueabi${FLOAT_ABI_SUFFIX}-g++-${GCC_COMPILER_VERSION})
-set(ARM_LINUX_SYSROOT /usr/arm-linux-gnueabi${FLOAT_ABI_SUFFIX} CACHE PATH "ARM cross compilation system root")
+#find_program(CMAKE_C_COMPILER NAMES arm-linux-gnueabi${FLOAT_ABI_SUFFIX}-gcc-${GCC_COMPILER_VERSION})
+#find_program(CMAKE_CXX_COMPILER NAMES arm-linux-gnueabi${FLOAT_ABI_SUFFIX}-g++-${GCC_COMPILER_VERSION})
+find_program(CMAKE_C_COMPILER NAMES arm-linux-gnueabi${FLOAT_ABI_SUFFIX}-gcc PATHS /work/local_tools/gcc-linaro-arm-linux-gnueabihf-4.8-2014.02_linux/bin/)
+find_program(CMAKE_CXX_COMPILER NAMES arm-linux-gnueabi${FLOAT_ABI_SUFFIX}-g++ PATHS /work/local_tools/gcc-linaro-arm-linux-gnueabihf-4.8-2014.02_linux/bin/)
+#find_program(CMAKE_AR NAMES arm-linux-gnueabi${FLOAT_ABI_SUFFIX}-ar PATHS /work/local_tools/gcc-linaro-arm-linux-gnueabihf-4.8-2014.02_linux/bin/)
+
+set(CMAKE_AR /work/local_tools/gcc-linaro-arm-linux-gnueabihf-4.8-2014.02_linux/bin/arm-linux-gnueabihf-ar CACHE FILEPATH "Archiver")
+#set(ARM_LINUX_SYSROOT /usr/arm-linux-gnueabi${FLOAT_ABI_SUFFIX} CACHE PATH "ARM cross compilation system root")
+set(ARM_LINUX_SYSROOT /work/local_tools/gcc-linaro-arm-linux-gnueabi${FLOAT_ABI_SUFFIX}-4.8-2014.02_linux/lib CACHE PATH "ARM cross compilation system root")
 
 set(CMAKE_CXX_FLAGS           ""                    CACHE STRING "c++ flags")
 set(CMAKE_C_FLAGS             ""                    CACHE STRING "c flags")
